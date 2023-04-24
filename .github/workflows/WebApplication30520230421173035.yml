@@ -49,8 +49,3 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    - uses: myConsciousness/bluesky-post@v2
-      with:
-        text: "Posting from GitHub to Blue Sky"
-        identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
-        password: ${{ secrets.BLUESKY }}
