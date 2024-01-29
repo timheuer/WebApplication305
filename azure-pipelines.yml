@@ -8,14 +8,12 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'macos-latest'
 
 steps:
-- task: VSBuild@1
+- task: Bash@3
   inputs:
-    solution: 'WebApplication305.sln'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: 'Any CPU'
-    configuration: 'Debug'
-    msbuildArchitecture: x64
-    vsVersion: "15.0"
+    targetType: 'inline'
+    script: |
+      dotnet nuget locals all --clear
+      dotnet workload install maui macos ios wasm-tools
