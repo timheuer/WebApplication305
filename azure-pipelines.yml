@@ -12,8 +12,28 @@ pool:
 
 steps:
 - task: Bash@3
+  displayName: Install MAUI
   inputs:
     targetType: 'inline'
     script: |
       dotnet nuget locals all --clear
-      dotnet workload install maui macos ios wasm-tools
+      dotnet workload install maui 
+
+- task: Bash@3
+  displayName: Install macos
+  inputs:
+    targetType: 'inline'
+    script: |
+      dotnet workload install macos
+- task: Bash@3
+  displayName: Install ios
+  inputs:
+    targetType: 'inline'
+    script: |
+      dotnet workload install ios
+- task: Bash@3
+  displayName: Install wasm-tools
+  inputs:
+    targetType: 'inline'
+    script: |
+      dotnet workload install wasm-tools
